@@ -16,6 +16,7 @@
         <form action="{{ route('diaristas.update', $diarista) }}" method="POST" enctype="multipart/form-data">
             @method('PUT')
             @include('_form')
+            <button type="submit" class="btn btn-success mt-4">Atualizar</button>
         </form>
     </div>
 @endsection

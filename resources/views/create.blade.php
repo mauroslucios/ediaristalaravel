@@ -13,8 +13,9 @@
         </div>
     </div>
     <div class="row">
-        <form action="{{ route('diaristas.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('diarista.store') }}" method="POST" enctype="multipart/form-data">
             @include('_form')
+            <button type="submit" class="btn btn-success mt-4">Cadastrar</button>
         </form>
     </div>
 @endsection

@@ -29,9 +29,11 @@ class DiaristaController extends Controller
         $dados = $request->except('_token');
         $dados['foto_usuario'] = $request->foto_usuario->store('public');
 
-        Diarista::create($dados);
-
-        return redirect()->route('diaristas.index');
+        if (Diarista::create($dados)) {
+            return redirect()->route('diaristas.index')->with('success', 'Registro cadastrado com sucesso!');
+        } else {
+            return redirect()->route('diaristas.index')->with('danger', 'Houve um erro ao cadastrar diarista, favor verificar!');
+        }
     }
 
     //edit unique diarista
@@ -52,8 +54,11 @@ class DiaristaController extends Controller
             $dados['foto_usuario'] = $request->foto_usuario->store('public');
         }
 
-        $diarista->update($dados);
-        return redirect()->route('diaristas.index');
+        if ($diarista->update($dados)) {
+            return redirect()->route('diaristas.index')->with('info', 'Registro atualizada com sucesso!');
+        } else {
+            return redirect()->route('diaristas.index') - with('error', 'Houve um erro ao editar o resgistro, favor verificar!');
+        };
     }
 
     //delete unique diarista
@@ -70,5 +75,17 @@ class DiaristaController extends Controller
         $diarista = Diarista::findOrFail($id);
 
         return view('show', ['diarista' => $diarista]);
+    }
+
+    //destroy unique diarista
+    public function destroy(int $id)
+    {
+        $diarista = Diarista::findOrFail($id);
+
+        if ($diarista->delete()) {
+            return redirect()->route('diaristas.index')->with('warning', 'Registro deletado com sucesso!');
+        } else {
+            return redirect()->route('diaristas.index')->with('danger', 'Houve um erro ao deletar o registro.');
+        };
     }
 }

@@ -72,4 +72,4 @@
         </div>
     </div>
 </div>
-<button type="submit" class="btn btn-success mt-4">Cadastrar</button>
+<a href="{{ route('diaristas.index') }}" class="btn btn-warning mt-4">Cancelar</a>

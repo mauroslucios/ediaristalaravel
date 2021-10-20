@@ -8,7 +8,7 @@
             <h1>Diaristas</h1>
         </div>
         <div class="col-md-6">
-            <a href="{{ route('diaristas.create') }}" class="btn btn-primary" style="float:right">
+            <a href="{{ route('diarista.create') }}" class="btn btn-primary" style="float:right">
                 Cadastrar nova diarista
             </a>
         </div>
@@ -39,8 +39,8 @@
                             data-toggle="tooltip" data-placement="top" title="editar">
                             <i class="fas fa-edit" aria-hidden="true"></i>
                         </a>
-                        <a href="{{ route('diarista.delete', $diarista) }}" class="btn btn-danger btn-sm px-3"
-                            data-toggle="tooltip" data-placement="top" title="deletar">
+                        <a href="#" class="btn btn-danger btn-sm px-3" data-toggle="tooltip" data-placement="top"
+                            title="deletar" data-mdb-toggle="modal" data-mdb-target="#deleteModal">
                             <i class="fa fa-trash" aria-hidden="true"></i>
                         </a>
                     </td>

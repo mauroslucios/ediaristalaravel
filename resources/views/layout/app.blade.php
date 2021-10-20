@@ -32,7 +32,7 @@
                     <a class="nav-link active" aria-current="page" href="{{ route('diaristas.index') }}">
                         Diaristas
                     </a>
-                    <a class="nav-link" aria-current="page" href="{{ route('diaristas.create') }}">
+                    <a class="nav-link" aria-current="page" href="{{ route('diarista.create') }}">
                         Nova Diaristas
                     </a>
                 </div>
@@ -42,6 +42,7 @@
 
     <div class="container">
         <div class="" style="height: 100vh;">
+            @include('flash-message')
             @yield('main')
         </div>
     </div>
@@ -63,12 +64,38 @@
         integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
+    </script>
     <!-- Custom scripts -->
     <script type="text/javascript">
         $(function() {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
+            $('[data-toggle="tooltip"]').tooltip();
+            $(".alert").delay(5000).fadeOut("slow");
+        });
     </script>
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Exclusão de registro</h5>
+                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Deseja apagar este registro?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+                        Cancelar
+                    </button>
+                    <a href="{{ route('diarista.destroy', $diarista) }}" type="button" class="btn btn-primary">Apagar
+                        registro</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
