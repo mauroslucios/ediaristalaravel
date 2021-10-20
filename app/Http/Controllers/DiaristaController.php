@@ -29,6 +29,10 @@ class DiaristaController extends Controller
         $dados = $request->except('_token');
         $dados['foto_usuario'] = $request->foto_usuario->store('public');
 
+        $dados['cpf'] = str_replace(['.', '-'], '', $dados['cpf']);
+        $dados['cep'] = str_replace('-', '', $dados['cep']);
+        $dados['telefone'] = str_replace(['(', ')', ' ', '-'], '', $dados['telefone']);
+
         if (Diarista::create($dados)) {
             return redirect()->route('diaristas.index')->with('success', 'Registro cadastrado com sucesso!');
         } else {
@@ -49,6 +53,9 @@ class DiaristaController extends Controller
     {
         $diarista = Diarista::findOrFail($id);
         $dados = $request->except(['_token', '_method']);
+        $dados['cpf'] = str_replace(['.', '-'], '', $dados['cpf']);
+        $dados['cep'] = str_replace('-', '', $dados['cep']);
+        $dados['telefone'] = str_replace(['(', ')', ' ', '-'], '', $dados['telefone']);
 
         if ($request->hasFile('foto_usuario')) {
             $dados['foto_usuario'] = $request->foto_usuario->store('public');

@@ -16,9 +16,9 @@ class CreateDiaristasTable extends Migration
         Schema::create('diaristas', function (Blueprint $table) {
             $table->id();
             $table->string('nome_completo', 30);
-            $table->char('cpf', 11);
+            $table->char('cpf', 14);
             $table->string('email', 50);
-            $table->string('telefone', 11);
+            $table->string('telefone', 14);
             $table->string('logradouro');
             $table->integer('numero');
             $table->string('bairro', 30);

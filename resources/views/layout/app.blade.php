@@ -66,36 +66,26 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.6.0/mdb.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
+
     </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"
+        integrity="sha512-d4KkQohk+HswGs6A1d6Gak6Bb9rMWtxjOa0IiY49Q3TeFd5xAzjWXDCBW9RS7m86FQ4RzM2BdHmdJnnKRYknxw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Custom scripts -->
     <script type="text/javascript">
         $(function() {
             $('[data-toggle="tooltip"]').tooltip();
             $(".alert").delay(5000).fadeOut("slow");
+            $("#data").mask("99/99/9999");
+            $("#telefone").mask("(99) 99999-9999");
+            $("#cpf").mask("999.999.999-99");
+            $("#cep").mask("99999-999");
+            $("#cnpj").mask("99.999.999/9999-99");
+            $("#placa").mask("aaa - 9999");
         });
     </script>
 
-    <!-- Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Exclusão de registro</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    Deseja apagar este registro?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                        Cancelar
-                    </button>
-                    <a href="{{ route('diarista.destroy', $diarista) }}" type="button" class="btn btn-primary">Apagar
-                        registro</a>
-                </div>
-            </div>
-        </div>
-    </div>
 </body>
 
 </html>
