@@ -27,8 +27,9 @@
 @endif
 
 @if ($errors->any())
-    <div class="alert alert-danger mt-2" role="alert">
-        <button type="button" class="close" data-dismiss="">x</button>
-        Por favor, cheque os possíveis erros.
+    <div class="alert alert-danger alert-block alert-dismissible fade show alert-block mt-2" role="alert">
+        Um ou mais campos no formulário não estão de acordo com as regras de validação, por favor, cheque os possíveis
+        erros.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 @endif

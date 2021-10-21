@@ -51,8 +51,6 @@ class DiaristaController extends Controller
 
         if (Diarista::create($dados)) {
             return redirect()->route('diaristas.index')->with('success', 'Registro cadastrado com sucesso!');
-        } else {
-            return redirect()->route('diaristas.index')->with('danger', 'Houve um erro ao cadastrar diarista, favor verificar!');
         }
     }
 
@@ -84,9 +82,7 @@ class DiaristaController extends Controller
 
         if ($diarista->update($dados)) {
             return redirect()->route('diaristas.index')->with('info', 'Registro atualizada com sucesso!');
-        } else {
-            return redirect()->route('diaristas.index') - with('error', 'Houve um erro ao editar o resgistro, favor verificar!');
-        };
+        }
     }
 
     /**
@@ -108,8 +104,6 @@ class DiaristaController extends Controller
 
         if ($diarista->delete()) {
             return redirect()->route('diaristas.index')->with('warning', 'Registro deletado com sucesso!');
-        } else {
-            return redirect()->route('diaristas.index')->with('danger', 'Houve um erro ao deletar o registro.');
-        };
+        }
     }
 }
