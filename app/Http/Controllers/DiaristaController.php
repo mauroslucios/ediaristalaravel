@@ -7,7 +7,9 @@ use Illuminate\Http\Request;
 
 class DiaristaController extends Controller
 {
-    //view all diaristas
+    /**
+     * exibiação de todas diaristas
+     */
     public function index()
     {
         $diaristas = Diarista::get();
@@ -17,13 +19,17 @@ class DiaristaController extends Controller
         ]);
     }
 
-    //create new diarista
+    /**
+     * exibiação do formulário para cadastro de novas diaristas
+     */
     public function create()
     {
         return view('create');
     }
 
-    //store new diarista
+    /**
+     * cadastra nova diarista no banco de dados
+     */
     public function store(Request $request)
     {
         $dados = $request->except('_token');
@@ -40,7 +46,9 @@ class DiaristaController extends Controller
         }
     }
 
-    //edit unique diarista
+    /**
+     * exibição do formulário para edição de diaristas
+     */
     public function edit(int $id)
     {
         $diarista = Diarista::findOrFail($id);
@@ -48,7 +56,9 @@ class DiaristaController extends Controller
         return view('edit', ['diarista' => $diarista]);
     }
 
-    //update unique diarista
+    /**
+     * atualiza uma diarista no banco de dados
+     */
     public function update(int $id, Request $request)
     {
         $diarista = Diarista::findOrFail($id);
@@ -68,15 +78,9 @@ class DiaristaController extends Controller
         };
     }
 
-    //delete unique diarista
-    public function delete(int $id)
-    {
-        $diarista = Diarista::findOrFail($id);
-
-        return view('delete', ['diarista' => $diarista]);
-    }
-
-    //show unique diarista
+    /**
+     * exibição de uma única diarista
+     */
     public function show(int $id)
     {
         $diarista = Diarista::findOrFail($id);
@@ -84,7 +88,9 @@ class DiaristaController extends Controller
         return view('show', ['diarista' => $diarista]);
     }
 
-    //destroy unique diarista
+    /**
+     * apaga uma diarista no banco de dados
+     */
     public function destroy(int $id)
     {
         $diarista = Diarista::findOrFail($id);

@@ -68,7 +68,7 @@
             <label for="codigo ibge" class="form-label">Código IBGE:</label>
             <input value="{{ @$diarista->codigo_ibge }}" type="text" class="form-control form-control-sm"
                 placeholder="Código ibge" aria-label="Codigo Ibge" name="codigo_ibge" id="codigo_ibge" required
-                maxlength="5">
+                maxlength="8">
         </div>
     </div>
 </div>

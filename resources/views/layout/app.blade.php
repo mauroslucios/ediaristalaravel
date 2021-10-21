@@ -77,6 +77,9 @@
         $(function() {
             $('[data-toggle="tooltip"]').tooltip();
             $(".alert").delay(5000).fadeOut("slow");
+
+        });
+        $(document).ready(function() {
             $("#data").mask("99/99/9999");
             $("#telefone").mask("(99) 99999-9999");
             $("#cpf").mask("999.999.999-99");

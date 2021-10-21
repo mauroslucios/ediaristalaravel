@@ -20,13 +20,13 @@ class CreateDiaristasTable extends Migration
             $table->string('email', 50);
             $table->string('telefone', 14);
             $table->string('logradouro');
-            $table->integer('numero');
+            $table->integer('numero')->length(11);
             $table->string('bairro', 30);
             $table->string('cidade', 30);
             $table->string('complemento', 50)->nullable();
             $table->char('cep', 8);
             $table->char('estado', 2);
-            $table->integer('codigo_ibge');
+            $table->string('codigo_ibge', 7);
             $table->string('foto_usuario');
             $table->timestamps();
         });

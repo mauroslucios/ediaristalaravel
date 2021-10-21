@@ -24,4 +24,19 @@ class Diarista extends Model
         'codigo_ibge',
         'foto_usuario'
     ];
+
+    protected $visible = ['nome_completo', 'cidade', 'foto_usuario'];
+    /**
+     * buscando código ibge igual ao cep
+     */
+    static public function buscaPorCodigoIbge(int $codigoIbge)
+    {
+        return self::where('codigo_ibge', $codigoIbge)->limit(6)->get();
+    }
+
+    static public function quantidadePorCodigoIbge(int $codigoIbge)
+    {
+        $quantidade =  self::where('codigo_ibge', $codigoIbge)->count();
+        return $quantidade > 6 ? $quantidade - 6 : 0;
+    }
 }
