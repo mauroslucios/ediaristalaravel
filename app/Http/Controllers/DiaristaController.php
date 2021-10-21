@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DiaristaRequest;
 use App\Models\Diarista;
+use App\Services\ViaCEP;
 use Illuminate\Http\Request;
 
 class DiaristaController extends Controller
 {
+    protected ViaCEP $viaCep;
+
+    public function __construct(ViaCEP $viaCep)
+    {
+        $this->viaCep = $viaCep;
+    }
+
     /**
-     * exibiação de todas diaristas
+     * exibição de todas diaristas
      */
     public function index()
     {
@@ -30,7 +39,7 @@ class DiaristaController extends Controller
     /**
      * cadastra nova diarista no banco de dados
      */
-    public function store(Request $request)
+    public function store(DiaristaRequest $request)
     {
         $dados = $request->except('_token');
         $dados['foto_usuario'] = $request->foto_usuario->store('public');
@@ -38,6 +47,7 @@ class DiaristaController extends Controller
         $dados['cpf'] = str_replace(['.', '-'], '', $dados['cpf']);
         $dados['cep'] = str_replace('-', '', $dados['cep']);
         $dados['telefone'] = str_replace(['(', ')', ' ', '-'], '', $dados['telefone']);
+        $dados['codigo_ibge'] = $this->viaCep->buscar($dados['cep'])['ibge'];
 
         if (Diarista::create($dados)) {
             return redirect()->route('diaristas.index')->with('success', 'Registro cadastrado com sucesso!');
@@ -59,13 +69,14 @@ class DiaristaController extends Controller
     /**
      * atualiza uma diarista no banco de dados
      */
-    public function update(int $id, Request $request)
+    public function update(int $id, DiaristaRequest $request)
     {
         $diarista = Diarista::findOrFail($id);
         $dados = $request->except(['_token', '_method']);
         $dados['cpf'] = str_replace(['.', '-'], '', $dados['cpf']);
         $dados['cep'] = str_replace('-', '', $dados['cep']);
         $dados['telefone'] = str_replace(['(', ')', ' ', '-'], '', $dados['telefone']);
+        $dados['codigo_ibge'] = $this->viaCep->buscar($dados['cep'])['ibge'];
 
         if ($request->hasFile('foto_usuario')) {
             $dados['foto_usuario'] = $request->foto_usuario->store('public');
