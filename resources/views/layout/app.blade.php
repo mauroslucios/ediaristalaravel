@@ -42,8 +42,6 @@
 
     <div class="container">
         <!--validation erros-->
-
-
         <div class="" style="height: 100vh;">
             @include('flash-message')
             @yield('main')

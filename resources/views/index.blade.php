@@ -4,6 +4,15 @@
 @section('main')
 
     <div class="row mt-4">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <div class="col-md-2">
             <h4>Diaristas</h4>
         </div>
@@ -39,7 +48,8 @@
                 <tr>
                     <th scope="row">{{ $diarista->id }}</th>
                     <td class="text-center">{{ $diarista->nome_completo }}</td>
-                    <td class="text-center">{{ $diarista->telefone }}</td>
+                    <td class="text-center">
+                        {{ \Clemdesign\PhpMask\Mask::apply($diarista->telefone, '(00) 00000-0000') }}</td>
                     <td class="text-center">{{ $diarista->email }}</td>
                     <td colspan="3" class="text-center">
                         <a href="{{ route('diarista.show', $diarista) }}" class="btn btn-success btn-sm px-3"

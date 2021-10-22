@@ -19,7 +19,6 @@ class ValidaCep implements Rule
         $this->viaCep = $viaCep;
     }
 
-
     /**
      * Determine if the validation rule passes.
      *
